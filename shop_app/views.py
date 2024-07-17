@@ -2,8 +2,30 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from shop_app.models import person
 from .serializer import personSerializer
+from rest_framework.views import APIView
 
 # Create your views here.
+
+
+# APIView method(class)
+
+class classperson(APIView):
+    def get(self,request):
+        obj1 = person.objects.filter(team__isnull=False)
+        serialzer = personSerializer(obj1,many=True)
+        return Response(serialzer.data)
+    
+    def post(self,request):
+        return Response("class post method")
+
+
+
+
+
+
+
+
+
 @api_view(['GET','POST','PUT'])
 
 def index(request):
