@@ -30,7 +30,7 @@ def index(request):
 
 def persons(request):
     if request.method == 'GET':
-        obj1 = person.objects.all()
+        obj1 = person.objects.filter(team__isnull=False)
         serialzer = personSerializer(obj1,many=True)
         return Response(serialzer.data)
     
